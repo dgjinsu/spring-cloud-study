@@ -2,10 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/apigateway.main.iml" filepath="$PROJECT_DIR$/.idea/modules/apigateway.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/spring-cloud-test.iml" filepath="$PROJECT_DIR$/.idea/spring-cloud-test.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/temp-server.main.iml" filepath="$PROJECT_DIR$/.idea/modules/temp-server.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/todo-app-server.main.iml" filepath="$PROJECT_DIR$/.idea/modules/todo-app-server.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/apigateway/spring-cloud-test.apigateway.main.iml" filepath="$PROJECT_DIR$/.idea/modules/apigateway/spring-cloud-test.apigateway.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/common/spring-cloud-test.common.main.iml" filepath="$PROJECT_DIR$/.idea/modules/common/spring-cloud-test.common.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/member-server/spring-cloud-test.member-server.main.iml" filepath="$PROJECT_DIR$/.idea/modules/member-server/spring-cloud-test.member-server.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/temp-server/spring-cloud-test.temp-server.main.iml" filepath="$PROJECT_DIR$/.idea/modules/temp-server/spring-cloud-test.temp-server.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/todo-app-server/spring-cloud-test.todo-app-server.main.iml" filepath="$PROJECT_DIR$/.idea/modules/todo-app-server/spring-cloud-test.todo-app-server.main.iml" />
     </modules>
   </component>
 </project>
