@@ -1,4 +1,4 @@
-package com.example.todoappserver.global.config;
+package com.example.todoappserver.todo.infrastructure.config;
 
 import io.github.resilience4j.circuitbreaker.CircuitBreaker;
 import io.github.resilience4j.circuitbreaker.CircuitBreakerConfig;

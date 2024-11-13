@@ -1,4 +1,4 @@
-package com.example.todoappserver.global.exception;
+package com.example.todoappserver.todo.infrastructure.exception;
 
 import lombok.Builder;
 import lombok.Getter;

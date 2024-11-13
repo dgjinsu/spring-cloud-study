@@ -1,6 +1,6 @@
-package com.example.todoappserver.global.aop;
+package com.example.todoappserver.todo.infrastructure.aop;
 
-import com.example.todoappserver.global.annotation.RequireRole;
+import com.example.todoappserver.common.annotation.RequireRole;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

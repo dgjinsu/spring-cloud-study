@@ -1,4 +1,4 @@
-package com.example.todoappserver.global.config;
+package com.example.todoappserver.todo.infrastructure.config;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;

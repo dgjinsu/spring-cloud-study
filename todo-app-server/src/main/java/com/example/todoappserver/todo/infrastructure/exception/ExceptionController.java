@@ -1,6 +1,6 @@
-package com.example.todoappserver.global.exception;
+package com.example.todoappserver.todo.infrastructure.exception;
 
-import com.example.todoappserver.global.common.Response;
+import com.example.todoappserver.common.dto.Response;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
