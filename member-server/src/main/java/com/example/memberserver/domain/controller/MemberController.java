@@ -1,6 +1,7 @@
 package com.example.memberserver.domain.controller;
 
 import com.example.common.annotation.LoginMember;
+import com.example.common.security.PrincipalDetails;
 import com.example.memberserver.domain.dto.LoginRequest;
 import com.example.memberserver.domain.dto.MemberInfoResponse;
 import com.example.memberserver.domain.dto.MemberSaveRequest;
@@ -10,6 +11,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Enumeration;
@@ -35,10 +37,10 @@ public class MemberController {
     }
 
     @GetMapping("/info")
-    public MemberInfoResponse getInfo(@LoginMember String loginId, HttpServletRequest request) {
+    public MemberInfoResponse getInfo(@AuthenticationPrincipal PrincipalDetails principalDetails, HttpServletRequest request) {
         Map<String, String> headers = getHeadersInfo(request);
         headers.forEach((key, value) -> System.out.println(key + ": " + value));
-        return memberService.getInfo(loginId);
+        return memberService.getInfo(principalDetails.getMember().getId());
     }
 
     private Map<String, String> getHeadersInfo(HttpServletRequest request) {

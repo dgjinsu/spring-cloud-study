@@ -25,47 +25,40 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @RequiredArgsConstructor
 public class JwtFilter extends OncePerRequestFilter {
 
-    private final JwtTokenProvider jwtProvider;
-
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
+        FilterChain filterChain)
         throws ServletException, IOException {
         try {
-            String authorizationHeader = request.getHeader("Authorization");
-            String token;
-            // 헤더가 null 이 아니고 올바른 토큰이라면
-            if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
-                // 토큰 추출
-                token = authorizationHeader.substring(7);
-                // 만료 체크
-                if (jwtProvider.isExpiration(token)) {
-                    log.info("access token 만료");
-                    throw new DelegationTokenExpiredException("token 만료");
-                }
+            // X-User-Id와 X-User-Roles 헤더 확인
+            String userIdHeader = request.getHeader("X-User-Id");
+            String userRolesHeader = request.getHeader("X-User-Roles");
 
-                String loginId = jwtProvider.getLoginId(token);
-                Role role = jwtProvider.getRoles(token);
+            if (userIdHeader != null && userRolesHeader != null) {
+                // X-User-Id와 X-User-Roles 헤더가 있는 경우 이를 사용해 PrincipalDetails 생성
+                Long memberId = Long.valueOf(userIdHeader);
+                Role role = Role.valueOf(userRolesHeader);
 
-                PrincipalDetails principalDetails = new PrincipalDetails(new MemberDto(loginId, role));
+                PrincipalDetails principalDetails = new PrincipalDetails(
+                    new MemberDto(memberId, null, role));
 
-                // 인증 정보 생성
-                Authentication authentication = new UsernamePasswordAuthenticationToken(principalDetails, null,
-                        principalDetails.getAuthorities());
-
-                // SecurityContextHolder에 인증 정보 설정
+                Authentication authentication = new UsernamePasswordAuthenticationToken(
+                    principalDetails, null,
+                    principalDetails.getAuthorities());
                 SecurityContextHolder.getContext().setAuthentication(authentication);
+
+                log.info("SecurityContext에 X-User-Id: {} 와 X-User-Roles: {} 헤더 값으로 인증 정보가 설정되었습니다.",
+                    memberId, role);
+            } else {
+                log.warn("X-User-Id 또는 X-User-Roles 헤더가 요청에 없습니다.");
             }
 
             filterChain.doFilter(request, response);
         } catch (Exception e) {
-            // response 세팅
             response.setCharacterEncoding("UTF-8");
-            response.setContentType("application/json;charset=UTF-8"); // JSON 응답을 UTF-8로 설정
             response.setContentType(APPLICATION_JSON_VALUE);
-
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-            response.getWriter()
-                    .write(e.getMessage());
+            response.getWriter().write(e.getMessage());
         }
     }
 }

@@ -9,7 +9,7 @@ import lombok.*;
 @Getter
 @ToString
 public class MemberDto {
-
+    private Long id;
     private String loginId;
     private Role role;
 }

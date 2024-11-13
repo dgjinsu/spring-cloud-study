@@ -54,7 +54,7 @@ public class JwtTokenProvider {
 
     // 토큰에서 loginId 추출
     public String getLoginId(String jwt) {
-        return get(jwt).get("loginId", String.class);  // loginId 클레임에서 추출
+        return get(jwt).get("memberId", String.class);  // loginId 클레임에서 추출
     }
 
     // 토큰에서 roles 추출

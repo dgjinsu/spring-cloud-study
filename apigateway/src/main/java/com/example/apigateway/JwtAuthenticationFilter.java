@@ -41,7 +41,7 @@ public class JwtAuthenticationFilter extends AbstractGatewayFilterFactory<JwtAut
                 }
 
                 // 토큰 검증
-                String loginId = jwtProvider.getLoginId(token);
+                String memberId = jwtProvider.getLoginId(token);
                 String role = jwtProvider.getRoles(token);
 
 //                // 권한 체크
@@ -52,7 +52,7 @@ public class JwtAuthenticationFilter extends AbstractGatewayFilterFactory<JwtAut
 
                 // 사용자 정보를 헤더에 추가
                 ServerHttpRequest modifiedRequest = exchange.getRequest().mutate()
-                        .header("X-User-Id", loginId)
+                        .header("X-User-Id", memberId)
                         .header("X-User-Roles", role)
                         .build();
 

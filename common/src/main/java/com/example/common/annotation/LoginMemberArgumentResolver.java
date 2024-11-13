@@ -23,11 +23,12 @@ public class LoginMemberArgumentResolver implements HandlerMethodArgumentResolve
     public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer,
                                   NativeWebRequest webRequest, WebDataBinderFactory binderFactory) {
         HttpServletRequest request = (HttpServletRequest) webRequest.getNativeRequest(HttpServletRequest.class);
+        log.info("resolveArgument 진입");
         if (request != null) {
-            String userId = request.getHeader("X-User-Id"); // "X-User-Id" 헤더에서 값 가져오기
+            String memberId = request.getHeader("X-User-Id"); // "X-User-Id" 헤더에서 값 가져오기
 
-            if (userId != null) {
-                return userId; // 헤더 값을 String 타입으로 반환
+            if (memberId != null) {
+                return Long.valueOf(memberId); // 헤더 값을 String 타입으로 반환
             } else {
                 log.warn("X-User-Id 헤더가 요청에 없습니다.");
             }

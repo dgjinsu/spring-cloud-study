@@ -29,7 +29,7 @@ public class MemberService {
                 .role(Role.ROLE_MEMBER)
                 .name(request.name())
                 .build();
-
+        
         Member savedMember = memberRepository.save(member);
 
         return new MemberResponse(savedMember.getId(), savedMember.getName());
@@ -46,13 +46,13 @@ public class MemberService {
         }
 
         // accessToken & refreshToken 생성
-        String accessToken = jwtTokenProvider.createAccessToken(member.getLoginId(), member.getRole());
+        String accessToken = jwtTokenProvider.createAccessToken(member.getId(), member.getRole());
 
         return new LoginResponse(accessToken);
     }
 
-    public MemberInfoResponse getInfo(String loginId) {
-        Member member = memberRepository.findByLoginId(loginId)
+    public MemberInfoResponse getInfo(Long memberId) {
+        Member member = memberRepository.findById(memberId)
                 .orElseThrow(() -> new MemberException(ErrorCode.MEMBER_NOT_FOUND));
 
         return MemberInfoResponse.builder()
