@@ -1,6 +1,6 @@
 package com.example.todoappserver.global.feign;
 
-import com.example.todoappserver.domain.todo.dto.member.MemberInfoResponse;
+import com.example.todoappserver.domainold.todo.dto.member.MemberInfoResponse;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;

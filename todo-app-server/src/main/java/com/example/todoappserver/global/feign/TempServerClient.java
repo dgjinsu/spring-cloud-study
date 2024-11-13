@@ -1,7 +1,6 @@
 package com.example.todoappserver.global.feign;
 
-import com.example.todoappserver.domain.todo.dto.TodoResponse;
-import com.example.todoappserver.domain.todo.message.dto.TodoSaveRequestDto;
+import com.example.todoappserver.domainold.todo.dto.TodoResponse;
 import com.example.todoappserver.global.common.Response;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
