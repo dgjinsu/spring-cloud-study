@@ -1,6 +1,5 @@
 package com.example.todoappserver.todo.application.port.out;
 
-import com.example.todoappserver.todo.adapter.out.persistence.TodoEntity;
 import com.example.todoappserver.todo.domain.Todo;
 import java.util.List;
 

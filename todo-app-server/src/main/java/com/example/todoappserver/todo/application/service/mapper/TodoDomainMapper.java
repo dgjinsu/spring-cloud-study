@@ -17,7 +17,7 @@ public interface TodoDomainMapper {
     TodoDomainMapper INSTANCE = Mappers.getMapper(TodoDomainMapper.class);
 
     @Mapping(target = "isCompleted", constant = "false")
-    Todo toEntity(Long memberId, TodoSaveRequest request);
+    Todo toDomain(Long memberId, TodoSaveRequest request);
 
     @Mapping(source = "id", target = "todoId")
     TodoResponse toResponse(Todo todo);

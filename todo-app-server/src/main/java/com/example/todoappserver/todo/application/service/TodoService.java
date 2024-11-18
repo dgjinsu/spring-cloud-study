@@ -34,7 +34,7 @@ public class TodoService implements SaveTodoUseCase, DeleteTodoUseCase, GetTodoQ
 
     @Override
     public TodoResponse saveTodo(Long memberId, TodoSaveRequest request) {
-        Todo todo = todoMapper.toEntity(memberId, request);
+        Todo todo = todoMapper.toDomain(memberId, request);
         Todo savedTodo = todoRepositoryPort.saveTodo(todo);
 
         TodoResponse response = todoMapper.toResponse(savedTodo);
